@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agente SMP - Pruebas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f5f3;
+      margin: 0;
+      color: #222;
+    }
+    header {
+      background: #173c32;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 650px;
+      margin: 35px auto;
+      padding: 0 15px;
+    }
+    .chat {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 3px 14px #00000015;
+    }
+    .mensaje {
+      padding: 14px;
+      background: #f0f5f1;
+      border-radius: 9px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .entrada {
+      display: flex;
+      gap: 8px;
+    }
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #173c32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      cursor: pointer;
+    }
+    .aviso {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Senior Match Play La Herradura</h1>
+    <p>Asistente Virtual SMP</p>
+  </header>
+
+  <main>
+    <div class="chat">
+      <h2>Consulta al Agente SMP</h2>
+
+      <div class="mensaje" id="respuesta">
+        Bienvenido al Asistente SMP.
+        Pronto podras consultar las bases,
+        los grupos y los resultados del torneo.
+      </div>
+
+      <div class="entrada">
+        <input id="pregunta"
+          placeholder="Escribe tu pregunta..."
+          aria-label="Pregunta al asistente">
+        <button onclick="enviarPregunta()">
+          Enviar
+        </button>
+      </div>
+    </div>
+
+    <p class="aviso">
+      Ambiente de pruebas - Sin acceso a datos reales
+    </p>
+  </main>
+
+  <script>
+    function enviarPregunta() {
+      const pregunta =
+        document.getElementById("pregunta").value.trim();
+
+      if (!pregunta) return;
+
+      document.getElementById("respuesta").textContent =
+        "Recibi tu pregunta: " + pregunta +
+        ". Estamos preparando la conexion " +
+        "con el agente de inteligencia artificial.";
+    }
+  </script>
+</body>
+</html>
