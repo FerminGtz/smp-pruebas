@@ -96,17 +96,13 @@
   </main>
 
   <script>
-    function enviarPregunta() {
-      const pregunta =
-        document.getElementById("pregunta").value.trim();
+    
+function enviarPregunta() {
+  const urlLuna =
+    "https://script.google.com/macros/s/AKfycbzN4iFJWe7sYsiqpnGKbKmoaNfjrK5MVhlHKgYCoVhJzI-svxnbGUYPYHPDCokFK77j/exec";
 
-      if (!pregunta) return;
-
-      document.getElementById("respuesta").textContent =
-        "Recibi tu pregunta: " + pregunta +
-        ". Estamos preparando la conexion " +
-        "con el agente de inteligencia artificial.";
-    }
+  window.open(urlLuna, "_blank", "noopener,noreferrer");
+}
   </script>
 </body>
 </html>
