@@ -374,6 +374,21 @@
     <h2>Portal SMP — Pruebas de acceso</h2>
     <p>Estamos preparando el acceso único por correo y código de seis dígitos.</p>
     <p><strong>Identificación temporalmente deshabilitada.</strong></p>
+    
+<button
+  type="button"
+  onclick="abrirPuenteLuna()"
+  style="display:block;
+         margin:20px auto;
+         padding:14px 24px;
+         background:#173c32;
+         color:white;
+         border:0;
+         border-radius:8px;
+         cursor:pointer;">
+  Probar conexión con LUNA
+</button>
+
     <p>Esta página no solicita información personal, no procesa pagos y no modifica resultados.</p>
   `;
   document.querySelectorAll('nav a').forEach(a => { a.style.pointerEvents = 'none'; a.removeAttribute('onclick'); });
