@@ -379,5 +379,40 @@
   document.querySelectorAll('nav a').forEach(a => { a.style.pointerEvents = 'none'; a.removeAttribute('onclick'); });
 })();
 </script>
+ 
+<script>
+  // Prueba de comunicación con el puente.
+  // No recibe credenciales ni autoriza accesos.
+
+  window.addEventListener("message", function(event) {
+
+    // Por ahora, únicamente diagnóstico.
+    // La autenticación real requerirá una
+    // validación adicional en el servidor.
+
+    if (
+      !event.data ||
+      event.data.tipo !== "SMP_PRUEBA_PUENTE"
+    ) {
+      return;
+    }
+
+    console.log(
+      "Mensaje recibido desde:",
+      event.origin
+    );
+
+    console.log(
+      "Resultado:",
+      event.data.resultado
+    );
+
+    alert(
+      "Mensaje de prueba recibido.\n" +
+      "Origen: " + event.origin
+    );
+  });
+</script>
+
 </body>
 </html>
