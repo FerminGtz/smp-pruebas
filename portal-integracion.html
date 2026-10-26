@@ -395,86 +395,63 @@
 })();
 </script>
  
+
 <script>
-  // Prueba de comunicación con el puente.
-  // No recibe credenciales ni autoriza accesos.
+  /*
+   * SMP - Apertura del puente de LUNA
+   *
+   * Entorno de pruebas.
+   * No transmite credenciales.
+   * No autoriza sesiones.
+   * No modifica datos del torneo.
+   */
 
-  window.addEventListener("message", function(event) {
+  function abrirPuenteLuna() {
 
-    // Por ahora, únicamente diagnóstico.
-    // La autenticación real requerirá una
-    // validación adicional en el servidor.
+    const url = prompt(
+      "Pega la dirección de Google Apps Script " +
+      "que termina en /dev?modo=puente"
+    );
 
-    if (
-      !event.data ||
-      event.data.tipo !== "SMP_PRUEBA_PUENTE"
-    ) {
+    if (!url || !url.trim()) {
       return;
     }
 
-    console.log(
-      "Mensaje recibido desde:",
-      event.origin
+    let destino;
+
+    try {
+      destino = new URL(url.trim());
+    } catch (error) {
+      alert("La dirección introducida no es válida.");
+      return;
+    }
+
+    // Aceptar únicamente el puente de pruebas.
+    if (
+      destino.origin !== "https://script.google.com" ||
+      !destino.pathname.startsWith("/macros/s/") ||
+      !destino.pathname.endsWith("/dev") ||
+      destino.searchParams.get("modo") !== "puente"
+    ) {
+      alert(
+        "La dirección no corresponde al puente de pruebas de LUNA."
+      );
+      return;
+    }
+
+    const ventana = window.open(
+      destino.href,
+      "_blank"
     );
 
-    console.log(
-      "Resultado:",
-      event.data.resultado
-    );
-
-    alert(
-      "Mensaje de prueba recibido.\n" +
-      "Origen: " + event.origin
-    );
-  });
-</script>
-
-
-<button
-  type="button"
-  onclick="abrirPuenteLuna()"
-  style="
-    display:block;
-    position:fixed;
-    bottom:30px;
-    left:50%;
-    transform:translateX(-50%); 
-    z-index:9999;
-    margin:0;
-    padding:14px 24px;
-    background:#173c32;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-  ">
-  Probar conexión con LUNA
-</button>
-
-<script>
-function abrirPuenteLuna() {
-  const url = prompt(
-    "Pega la dirección de Apps Script " +
-    "que termina en /dev?modo=puente"
-  );
-
-  if (!url) return;
-
-  const destino = new URL(url);
-
-  if (
-    destino.origin !== "https://script.google.com" ||
-    !destino.pathname.endsWith("/dev") ||
-    destino.searchParams.get("modo") !== "puente"
-  ) {
-    alert("La dirección del puente no es válida.");
-    return;
+    if (!ventana) {
+      alert(
+        "El navegador bloqueó la nueva ventana. " +
+        "Permite ventanas emergentes para continuar."
+      );
+    }
   }
-
-  window.open(destino.href, "SMP_PuentePrueba");
-}
 </script>
 
- 
 </body>
 </html>
